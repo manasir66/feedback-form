@@ -6,8 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-numpy = "*"
-Flask = "*"
+flask = "*"
+psycopg2-binary = "*"
+Flask-SQLAlchemy = "*"
 
 [requires]
 python_version = "3.6"

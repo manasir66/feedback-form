@@ -51,7 +51,15 @@ def submit():
         #print(student, matric_number, mahallah, rating, comments)
         if student == '' or matric_number == '' or mahallah == '':
             return render_template('index.html', message= 'Please enter the details')
-        return render_template('success.html')
+        
+        if db.session.query(Feedback).filter(Feedback.student == student).count() == 0 :
+            data =  Feedback(student, matric_number, mahallah, rating, comments)
+            db.session.add(data)
+            db.session.commit()
+
+            return render_template('success.html')
+        
+        return render_template('index.hml', message='You have already submitted feedback')
 
 
 if __name__ == '__main__' :
